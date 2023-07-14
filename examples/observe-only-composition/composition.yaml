@@ -32,11 +32,9 @@ spec:
                 description = "VPC name"
                 type        = string
               }
-            vars:
-              - key: vpcName
       patches:
         - fromFieldPath: spec.vpcName
-          toFieldPath: spec.forProvider.vars[0].value
+          toFieldPath: spec.forProvider.varmap.vpcName
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.outputs.vpc_id
           toFieldPath: status.share.vpcId

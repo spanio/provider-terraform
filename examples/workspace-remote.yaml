@@ -17,10 +17,22 @@ spec:
     # workspace-inline.yaml.
     source: Remote
     module: git::https://github.com/crossplane/tf?ref=main
-    # Variables can be specified inline.
+    # Variables of type string can be specified inline.
     vars:
     - key: region
       value: us-west-1
+    # Variables can be specified as a yaml or json object.
+    # This is especially useful for patching, or if your
+    # variables aren't strings.
+    varmap:
+      subnets:
+        - subnet_1
+        - subnet_2
+      replicas: 3
+      deletionProtection: false
+      account:
+        id: "123456789"
+        alias: example-account
     # Variable files can be loaded from a ConfigMap or a Secret.
     varFiles:
     - source: ConfigMapKey
